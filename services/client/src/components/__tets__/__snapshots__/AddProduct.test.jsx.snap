@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddTienda renders a snapshot properly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    className="field"
+  >
+    <input
+      className="input is-large"
+      name="nombre"
+      placeholder="Enter a nombre"
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="field"
+  >
+    <input
+      className="input is-large"
+      name="encargado"
+      placeholder="Enter encargado"
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="field"
+  >
+    <input
+      className="input is-large"
+      name="sucursal"
+      placeholder="Enter sucursal"
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="field"
+  >
+    <input
+      className="input is-large"
+      name="direccion"
+      placeholder="Enter direccion"
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="field"
+  >
+    <input
+      className="input is-large"
+      name="telefono"
+      placeholder="Enter telefono"
+      required={true}
+      type="text"
+    />
+  </div>
+  <input
+    className="button is-primary is-large is-fullwidth"
+    type="submit"
+    value="Agregar"
+  />
+</form>
+`;

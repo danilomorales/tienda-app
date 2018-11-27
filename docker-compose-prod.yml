@@ -1,0 +1,51 @@
+version: '3.6'
+
+services:
+
+  tienda:
+    build:
+      context: ./services/tienda
+      dockerfile: Dockerfile-prod
+    expose:
+      - 5000
+    environment:
+      - FLASK_ENV=production
+      - APP_SETTINGS=project.config.ProductionConfig
+      - DATABASE_URL=postgres://postgres:postgres@tienda-db:5432/tienda_prod
+      - DATABASE_TEST_URL=postgres://postgres:postgres@tienda-db:5432/tienda_test
+    depends_on:  # <-- nuevo
+      - tienda-db
+
+  tienda-db:  # <-- nuevo
+    build:
+      context: ./services/tienda/project/db
+      dockerfile: Dockerfile
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  nginx:
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile-prod
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - tienda
+      - client
+  
+  client:
+    container_name: client
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile-prod
+      args:
+        - NODE_ENV=production
+        - REACT_APP_TIENDA_SERVICE_URL=${REACT_APP_TIENDA_SERVICE_URL}
+    ports:
+      - '3007:80'
+    depends_on:
+      - tienda
