@@ -21,7 +21,7 @@ class App extends Component {
 		this.handleChange = this.handleChange.bind(this);
 	};
 
-    //nuevo
+    //new
 	componentDidMount() {
 		this.getTienda();
 	};
